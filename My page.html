@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Go Girl!</title>
+  <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="project.css">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<style>
+#main {
+  text-align: center;
+  font-family: Playfair Display;
+  font-size: 20px;
+  background: rgba(217,255,179,.8);
+  margin: 40px;
+  border-style: dotted;
+  border-color: rgba(120,150,132,1)
+}
+button {
+  margin: 40px;
+}
+input {
+  font-size: 14px;
+}
+.fill {
+  background: white;
+  color: red;
+  border-bottom: 2px black solid;
+  font-family: helvetica;
+  padding: 0 6px;
+  margin: 4px;
+}
+.start {
+  background-color: #d9ffb3;
+  margin: 40px;
+  font-family: Playfair Display;
+  background: linear-gradient(bottom, rgba(217,255,179,.8), rgba(120,150,132,.8));
+    background: -webkit-linear-gradient(bottom, rgba(217,255,179,.8), rgba(120,150,132,.8));
+    background: -moz-linear-gradient(bottom, rgba(217,255,179,.8), rgba(120,150,132,.8));
+}
+.foot {
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+<div class="navmenu">
+ <ul>
+      <li><a href="index.html">Home</a></li>      
+      <li><a href="#">About</a></li>
+      <li><a href="#">Go!</a>
+        <ul>
+          <li><a href="#">Why Travel alone?</a></li><br>
+          <li><a href="#">Where to?</a></li><br>
+          <li><a href="#">Tips</a></li>
+        </ul>
+      </li>
+  </ul>
+</div>
+<div class="start">
+<h1>Starting your adventure</h1>
+<p>So, you've decided that travelling on your own is what you want to do, but where do you begin? Luckily GoGirl! is at hand to help you out. We've come up with this simple list to get you on your way to a safe and amazing solo trip!</p>
+<ol>
+  <li><b>Work out your budget.</b> Have a think about how much you'd like to spend on your trip. Maybe you already have the money - great! But if not have a rough idea how much your adventure will cost so that you have a figure to save towards</li>
+  <li><b>Plan the dates you want to be away for.</b> Theres no point in planning a trip if you don't know when you're going! Have a think about when you'd like to get away, it helps if you can be a little flexible on exact dates as sometimes flights may be cheaper on certain days.</li>
+  <li><b>Think about where you'd like to go.</b> This is the most exciting step, think about where you'd like to travel, be it a city, country, continent or even the world! Just remember, if you want to go on holiday in august, there's no point planning to ski in the French alps, as you will be disapointed.  You may find our "Where to" page helpful!</li>
+  <li><b>Have a look at Tripadvisor.</b> Tripadvisor is the modern womans holiday guidebook, at the touch of the button you can search top tourist attractions, places to eat and hotels in your chosen destination. This can be a lifesaver when you're debating visiting some ancient ruins because they're slightly outside of your holiday budget, or if you fancy some chinese food in the middle of the Amazon!</li>
+  <li><b>Use websites such as hostelbookers and hostelworld to book your accomodation.</b> If you're on a budget these sites will change your life. Browse hostels in your destination with honest reviews from other travellers, and book them directly through the site, so simple! We recommend not going for the very cheapest hostel when travelling alone however, as sometimes these can lack atmosphere and it can be difficult to meet new people. Instead we suggest staying in so called "party hostels" which most of the time aren't too wild, but have a constant buzz and are often filled with young solo travellers.</li>
+  <li><b>Speak to people.</b> It may seem daunting to speak to strangers, but you'll be amazed how welcoming other travellers - as well as locals - can be to solo travellers, you might even make a best friend! Of course do be careful, don't agree to meet new people in secluded places, and always let someone know if you're planning on going somewhere with a stranger. It's better to be safe than sorry!</li>
+  <li><b>HAVE FUN</b></li>
+</ol>
+</div>
+
+<div id ="main">
+<h2>Interactive adventure</h2>
+<div class="prompt"></div>
+<button>Next</button>
+</div>
+
+<script>
+// List of prompts for the user
+var prompts = [
+  'Type your name',
+  'Type a continent',
+  'Type a negative adjective',
+  'Type a positive adjective'
+   ];
+
+var answers=[];
+// Keep track of current prompt we're on
+var currentPrompt = 0;
+
+// A function that will call the next prompt
+var nextPrompt = function() {
+  //if there's no answer in the form
+  if (currentPrompt != 0){
+    answers.push($('input').val());
+  }
+  // if there is a next prompt
+  if (currentPrompt < prompts.length) {
+    // put first prompt in all html elements with class 
+    $('.prompt').html(prompts[currentPrompt] +'<br><input type="text">');
+    // move the next prompt into variable currentPrompt 
+    currentPrompt = currentPrompt + 1;
+  }
+  //or else if we're at the end of the array
+  else {
+    // put a new message into the html.
+    showFinal();
+  }
+}
+
+//puts user answers into HTML
+var showFinal = function() {
+  $('.prompt').html('This is the story of <span class="fill">'+answers[0]+'</span>and her travel adventure. Once upon a time, '+answers[0]+' decided to travel alone around <span class="fill">'+answers[1]+'.</span>She was a little scared so took to the internet to calm her down. There she discovered Go Girl! a website for all her solo travelling needs. She was so relieved as she knew that her holiday would be <span class="fill">'+answers[2]+'</span> if she had not found it, but with Go Girl she knew her trip could be <span class="fill">'+answers[3]+'</span>.');
+  //and then hide the button
+  $('button').hide();
+}
+// run nextPrompt function when button is clicked
+$('button').click(function() {
+  nextPrompt();
+});
+
+// Show the first prompt as soon as js loads
+nextPrompt();
+</script>
+</div>
+
+<div class="foot">
+<footer>
+<div class="row">
+<div class="col-sm-2 text-center"> 
+<a href="https://twitter.com/intent/tweet?button_hashtag=GoGirl" class="twitter-hashtag-button" data-size="large" data-text="Where will you go?" data-related="" data-show-count="false">Tweet #GoGirl</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<div id='social-buttons'>
+      <div class="col-sm-1">
+      <button class='btn-facebook'>Facebook</button>
+      </div>
+      <div class="col-sm-1">
+      <button class='btn-pinterest'>Pinterest</button>
+      </div>
+    </div>
+<div class="col-sm-4">
+</div>
+<div class="col-sm-4">
+Join our mailing list!
+<input type="email" placeholder="Your email">
+  <input type="Submit">
+</div>
+</div>
+</footer>
+</div>
+</body>
+</html>
